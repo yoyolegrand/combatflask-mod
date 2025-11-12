@@ -1,0 +1,7 @@
+{
+  "item.combatflask.flask_fire": "Fire Flask",
+  "item.combatflask.flask_frost": "Frost Flask",
+  "block.combatflask.alchemy_table": "Alchemy Table",
+  "attribute.name.combatflask.flask_effectiveness": "Flask Effectiveness",
+  "attribute.name.combatflask.flask_duration": "Flask Duration"
+}
