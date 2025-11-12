@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efc97740-50e5-431c-9235-cb01131a4b24" name="Changes" comment="" />
+    <list default="true" id="efc97740-50e5-431c-9235-cb01131a4b24" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -52,6 +55,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/com/combatflask/registry/ModEntities.java" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -66,27 +72,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.C:/Users/Utilisateur/Downloads/combatflask_skeleton_1.20.1 [createMcpToSrg].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.C:/Users/Utilisateur/Downloads/combatflask_skeleton_1.20.1/build.gradle.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.combatflask_skeleton_1.20.1 [createMcpToSrg].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.combatflask_skeleton_1.20.1 [genIntellijRuns].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.combatflask_skeleton_1.20.1 [runClient].executor&quot;: &quot;Debug&quot;,
-    &quot;Gradle.combatflask_skeleton_1.20.1.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Utilisateur/Downloads/combatflask_skeleton_1.20.1&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.tools&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.C:/Users/Utilisateur/Downloads/combatflask_skeleton_1.20.1 [createMcpToSrg].executor": "Run",
+    "Gradle.C:/Users/Utilisateur/Downloads/combatflask_skeleton_1.20.1/build.gradle.executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "Gradle.combatflask_skeleton_1.20.1 [createMcpToSrg].executor": "Run",
+    "Gradle.combatflask_skeleton_1.20.1 [genIntellijRuns].executor": "Run",
+    "Gradle.combatflask_skeleton_1.20.1 [runClient].executor": "Debug",
+    "Gradle.combatflask_skeleton_1.20.1.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Utilisateur/Downloads/combatflask_skeleton_1.20.1",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "configurable.group.tools"
   }
-}</component>
+}]]></component>
   <component name="QodanaReportsService">
     <option name="descriptions">
       <ReportDescription localRun="true" path="C:\Users\Utilisateur\AppData\Local\Temp\qodana_output\qodana.sarif.json" reportGuid="1564d0ae-254a-4279-af0b-c58e95d33739" reportId="combatflask/qodana/2025-11-01" />
