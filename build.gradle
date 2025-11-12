@@ -65,6 +65,10 @@ repositories {
         url = "https://maven.theillusivec4.top/"
     }
     maven {
+        name = "IllusiveC4 Releases"
+        url = "https://maven.theillusivec4.top/releases"
+    }
+    maven {
         name = "Iron's Spells Maven"
         url = "https://maven.ironsspellbooks.io/releases"
     }
