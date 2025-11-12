@@ -1,15 +1,20 @@
 package com.combatflask.system;
 
 import com.combatflask.CombatFlaskMod;
+import com.combatflask.compat.CompatRefs;
 import com.combatflask.content.item.CombatFlaskItem;
 import com.combatflask.registry.ModAttributes;
-import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.AreaEffectCloud;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
@@ -17,7 +22,6 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.server.ServerLifecycleHooks;
-import net.minecraft.core.registries.BuiltInRegistries;
 
 import java.util.List;
 import java.util.Objects;
@@ -118,12 +122,26 @@ public class FlaskCloudManager {
                 case FROST -> {
                     // petit burst de “froid” immédiat
                     le.hurt(sl.damageSources().freeze(), Math.max(1.0F, 1.0F * eff));
+                    le.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 60, 0, true, true, true));
+                    le.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 1, true, true, true));
                 }
                 case STORM -> {
                     // impact électrique initial
                     le.hurt(sl.damageSources().lightningBolt(), Math.max(1.0F, 2.0F * eff));
+                    var stun = CompatRefs.getIronStun();
+                    if (stun != null) {
+                        le.addEffect(new MobEffectInstance(stun, 40, 0, true, true, true));
+                    }
+                    var electrocute = CompatRefs.getElectrocute();
+                    if (electrocute != null) {
+                        le.addEffect(new MobEffectInstance(electrocute, 40, 0, true, true, true));
+                    }
                 }
             }
+        }
+
+        if (type == CombatFlaskItem.FlaskType.STORM) {
+            spawnLightning(sl, x, y, z, owner);
         }
     }
 
@@ -181,22 +199,41 @@ public class FlaskCloudManager {
                         float dmg = FROST_DMG * (float) getEff(cloud.getOwner());
                         le.hurt(level.damageSources().indirectMagic(le, null), dmg);
                         // Weakness I pendant 2s, “refreshed” tant qu’on reste dedans
-                        le.addEffect(new MobEffectInstance(net.minecraft.world.effect.MobEffects.WEAKNESS,
+                        le.addEffect(new MobEffectInstance(MobEffects.WEAKNESS,
                                 40, 0, true, false, true));
                         // Slowness I pour le ‘feeling’ de givre
-                        le.addEffect(new MobEffectInstance(net.minecraft.world.effect.MobEffects.MOVEMENT_SLOWDOWN,
+                        le.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,
                                 40, 0, true, false, true));
                     }
                     case "STORM" -> {
                         float dmg = STORM_DMG * (float) getEff(cloud.getOwner());
                         le.hurt(level.damageSources().lightningBolt(), dmg);
+                        var electrocute = CompatRefs.getElectrocute();
+                        if (electrocute != null) {
+                            le.addEffect(new MobEffectInstance(electrocute, 40, 0, true, false, true));
+                        }
                     }
                 }
+            }
+
+            if ("STORM".equals(tag) && level.random.nextFloat() < 0.05F) {
+                spawnLightning(level, cloud.getX(), cloud.getY(), cloud.getZ(), cloud.getOwner());
             }
         }
     }
 
     /* ---------- Helpers ---------- */
+
+    private static void spawnLightning(ServerLevel level, double x, double y, double z, LivingEntity owner) {
+        LightningBolt bolt = EntityType.LIGHTNING_BOLT.create(level);
+        if (bolt == null) return;
+        bolt.moveTo(x, y, z);
+        bolt.setVisualOnly(true);
+        if (owner instanceof ServerPlayer player) {
+            bolt.setCause(player);
+        }
+        level.addFreshEntity(bolt);
+    }
 
     private static double getEff(LivingEntity owner) {
         if (owner == null) return 1.0;
@@ -216,25 +253,5 @@ public class FlaskCloudManager {
 
     private static float clamp(float v, float min, float max) {
         return v < min ? min : (v > max ? max : v);
-    }
-
-    /* ---- Compatibilité facultative : retourne une particule si dispo, sinon null ---- */
-    public static final class CompatRefs {
-        /**
-         * Si tu ajoutes Iron’s Spells (ou autre), retourne ici leur particule
-         * en tant que ParticleOptions (souvent SimpleParticleType).
-         * Retourne null si non trouvée.
-         */
-        public static ParticleOptions getIronSpark() {
-            try {
-                // Exemple si une particule existe: new ResourceLocation("modid","particle_name")
-                // et que Registry<ParticleType> expose une SimpleParticleType qui implémente ParticleOptions.
-                ResourceLocation id = new ResourceLocation("irons_spells", "electric_spark");
-                var pType = BuiltInRegistries.PARTICLE_TYPE.getOptional(id).orElse(null);
-                // La plupart des SimpleParticleType *sont* des ParticleOptions utilisables directement:
-                if (pType instanceof ParticleOptions opts) return opts;
-            } catch (Throwable ignored) {}
-            return null;
-        }
     }
 }

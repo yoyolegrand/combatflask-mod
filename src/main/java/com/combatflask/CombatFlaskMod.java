@@ -14,7 +14,7 @@ public class CombatFlaskMod {
 
     public CombatFlaskMod() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-        ModItems.REGISTER.register(bus);
+        ModItems.register(bus);
         ModBlocks.REGISTER.register(bus);
         ModEntities.ENTITIES.register(bus);
         ModAttributes.REGISTER.register(bus);
