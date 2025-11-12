@@ -1,6 +1,7 @@
 {
   "item.combatflask.flask_fire": "Flasque de Feu",
   "item.combatflask.flask_frost": "Flasque de Givre",
+  "item.combatflask.flask_storm": "Flasque de Tempête",
   "block.combatflask.alchemy_table": "Table d'Alchimie",
   "attribute.name.combatflask.flask_effectiveness": "Efficacité des Flasques",
   "attribute.name.combatflask.flask_duration": "Durée des Flasques"

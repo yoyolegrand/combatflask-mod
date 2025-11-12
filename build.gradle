@@ -68,6 +68,14 @@ repositories {
         name = "Iron's Spells Maven"
         url = "https://maven.ironsspellbooks.io/releases"
     }
+    maven {
+        name = "GeckoLib"
+        url = "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/"
+    }
+    maven {
+        name = "Player Animator"
+        url = "https://maven.kosmx.dev/"
+    }
 }
 
 dependencies {
@@ -77,8 +85,18 @@ dependencies {
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:5.9.1+1.20.1:api")
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:5.9.1+1.20.1")
 
+    // Caelus (capabilities / flight hooks)
+    compileOnly fg.deobf("top.theillusivec4.caelus:caelus-forge:3.1.0+1.20.1:api")
+    runtimeOnly fg.deobf("top.theillusivec4.caelus:caelus-forge:3.1.0+1.20.1")
+
     // Iron's Spellbooks
     implementation fg.deobf("io.redspace:irons_spellbooks:1.20.1-3.4.0")
+
+    // GeckoLib animations (client visuals)
+    implementation fg.deobf("software.bernie.geckolib:geckolib-forge-1.20.1:4.4")
+
+    // Player Animator compatibility layer
+    implementation fg.deobf("dev.kosmx.player-animator:player-animation-lib-forge:1.0.2+1.20")
 }
 tasks.withType(JavaCompile).configureEach {
     options.encoding = "UTF-8"
