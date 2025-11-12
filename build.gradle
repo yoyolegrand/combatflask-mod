@@ -5,7 +5,14 @@ plugins {
 }
 
 minecraft {
-    mappings channel: 'parchment', version: '2023.09.03-1.20.1'
+    def mcVersion = project.findProperty('mc_version') ?: '1.20.1'
+    def parchmentVersion = project.findProperty('mappings_version') ?: '2023.09.03-1.20.1'
+
+    mappings channel: 'official', version: mcVersion
+    mappings layered() {
+        officialMojangMappings()
+        parchment(mcVersion, parchmentVersion)
+    }
     copyIdeResources = true
 
     runs {
